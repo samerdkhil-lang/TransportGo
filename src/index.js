@@ -101,9 +101,29 @@ app.listen(PORT, () => {
   console.log(`API démarrée sur http://localhost:${PORT}`);
   // Teste la connexion à MySQL dès le lancement
   pool.getConnection()
-    .then((conn) => {
+    .then(async (conn) => {
       conn.release();
       console.log('✓ Connexion MySQL établie avec succès');
+      // Si la base est neuve (ex: nouvel hébergement cloud), initialise les tables et données de test
+      try {
+        const [tables] = await pool.query("SHOW TABLES LIKE 'users'");
+        if (tables.length === 0) {
+          console.log('Base vierge détectée : initialisation du schéma...');
+          const schemaPath = path.join(__dirname, '../schema.sql');
+          if (fs.existsSync(schemaPath)) {
+            const sql = fs.readFileSync(schemaPath, 'utf8');
+            const c = await pool.getConnection();
+            try {
+              await c.query(sql);
+              console.log('✓ Schéma et données initiales créés avec succès !');
+            } finally {
+              c.release();
+            }
+          }
+        }
+      } catch (e) {
+        console.warn('Initialisation schéma :', e.message);
+      }
     })
     .catch((err) => {
       console.warn(`! Attention: connexion MySQL impossible (${err.code} sur ${process.env.DB_HOST || '127.0.0.1'}:${process.env.DB_PORT || 3307})`);

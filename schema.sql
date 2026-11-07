@@ -100,9 +100,10 @@ CREATE TABLE IF NOT EXISTS reservations (
 -- exists, then change roles with an UPDATE if you need a driver/admin.
 -- =====================================================================
 INSERT INTO users (name, email, password_hash, role) VALUES
-  ('Admin Test',  'admin@transportgo.test',  'PLACEHOLDER_HASH', 'admin'),
-  ('Driver Test', 'driver@transportgo.test', 'PLACEHOLDER_HASH', 'driver'),
-  ('Client Test', 'client@transportgo.test', 'PLACEHOLDER_HASH', 'client');
+  ('Admin Test',  'admin@transportgo.test',  '$2b$10$BhJDoOvdAHM6VDX1Qzvzfu51belmLsTiSkHEX7WVGtcqEExDEuKPG', 'admin'),
+  ('Driver Test', 'driver@transportgo.test', '$2b$10$3VHINxyyJEVMfo35xpFAJeTjAKKONyzgldlPwTnr6eZXzAhuFpgQm', 'driver'),
+  ('Client Test', 'client@transportgo.test', '$2b$10$BhJDoOvdAHM6VDX1Qzvzfu51belmLsTiSkHEX7WVGtcqEExDEuKPG', 'client')
+ON DUPLICATE KEY UPDATE password_hash = VALUES(password_hash);
 
 INSERT INTO vehicles (plate, model, capacity, status) VALUES
   ('123-TUN-4567', 'Mercedes Tourismo', 50, 'available'),

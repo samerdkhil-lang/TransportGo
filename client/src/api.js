@@ -1,8 +1,9 @@
 import axios from 'axios';
 
-// L'API tourne sur Windows, port 5000. Modifiable avec VITE_API_URL dans client/.env
+// En production (URL unique) ou en dev avec proxy Vite, l'API est sur /api
+// Modifiable avec VITE_API_URL dans client/.env si l'API est sur un autre domaine
 const api = axios.create({
-  baseURL: import.meta.env.VITE_API_URL || 'http://localhost:5000/api',
+  baseURL: import.meta.env.VITE_API_URL || '/api',
 });
 
 // Ajoute automatiquement le token JWT à chaque requête

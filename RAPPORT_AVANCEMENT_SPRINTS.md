@@ -1,7 +1,7 @@
 # 📊 Rapport d'Avancement des Sprints - Projet TransportGo
 
-**Projet :** Application de Gestion & Réservation de Transport Interurbain (TransportGo)  
-**Étudiant / Développeur :** Samer Dkhil  
+**Projet :** Application de Gestion & Réservation de Transport  (TransportGo)  
+**Étudiant / Développeur :** Samer Dkhil  + ahmednour hkiri
 **Période :** Du 19 Octobre 2026 au 07 Novembre 2026 (3 semaines)  
 **Dépôt GitHub :** [https://github.com/samerdkhil-lang/TransportGo](https://github.com/samerdkhil-lang/TransportGo)
 
@@ -121,3 +121,4 @@
 | **Frontend Web (React/Vite)** | ✅ 100% | Parcours Client et Chauffeur complètement implémentés et testés. |
 | **Documentation & Schémas** | ✅ 100% | `README.md` exhaustif avec guides de test et endpoints documentés. |
 | **Versioning Git & CI/CD** | ✅ 100% | Dépôt GitHub à jour avec protection des variables sensibles (`.env`). |
+
